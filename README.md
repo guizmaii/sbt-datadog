@@ -46,9 +46,9 @@ datadogApmVersion := "0.106.0"
 
 #### `datadogApmEnabled`
 
-You can easily disable the Datadog APM by settings this setting to `false`.
-Note that if you have the `DD_TRACE_ENABLED` environment variable set, it'll take precedence over this setting.
-See https://docs.datadoghq.com/tracing/trace_collection/library_config/java/
+You can easily disable the Datadog APM by settings this setting to `false`.     
+Note that if you have the `DD_TRACE_ENABLED` environment variable set, it'll take precedence over this setting.     
+See https://docs.datadoghq.com/tracing/trace_collection/library_config/java/     
 
 Default value: `true`
 
