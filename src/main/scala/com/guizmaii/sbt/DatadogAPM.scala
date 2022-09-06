@@ -81,11 +81,27 @@ object DatadogAPM extends AutoPlugin {
     bashScriptExtraDefines +=
       // https://docs.datadoghq.com/profiler/enabling/java/?tab=commandarguments
       // We have to check `datadogApmEnabled` to enable profiling because if we activate the profiling but deactivate the APM, the APM will start anyway.
+      // I'm clearly not an expert in Bash... At least, it's explicit...
       s"""
-         |addJava "-Ddd.trace.enabled=${datadogApmEnabled.value}"
-         |addJava "-Ddd.profiling.enabled=${datadogApmEnabled.value && datadogProfilingEnabled.value}"
-         |addJava "-Ddd.profiling.allocation.enabled=${datadogApmEnabled.value && datadogAllocationProfilingEnabled.value}"
-         |""".stripMargin,
+         |if [ "$${DD_TRACE_ENABLED}" == "true" ]; then
+         |  export __ENABLE_TRACES__=true
+         |else
+         |  export __ENABLE_TRACES__=${datadogApmEnabled.value}
+         |fi
+         |if [ "$${__ENABLE_TRACES__}" == "true" ]; then
+         |  export __ENABLE_PROFILING__=${datadogProfilingEnabled.value}
+         |else
+         |  export __ENABLE_PROFILING__=false
+         |fi
+         |if [ "$${__ENABLE_TRACES__}" == "true" ]; then
+         |  export __ENABLE_ALLOCATION_PROFILING__=${datadogAllocationProfilingEnabled.value}
+         |else
+         |  export __ENABLE_ALLOCATION_PROFILING__=false
+         |fi
+         |addJava "-Ddd.trace.enabled=$${__ENABLE_TRACES__}"
+         |addJava "-Ddd.profiling.enabled=$${__ENABLE_PROFILING__}"
+         |addJava "-Ddd.profiling.allocation.enabled=$${__ENABLE_ALLOCATION_PROFILING__}"
+         |""".stripMargin.trim,
     bashScriptExtraDefines += s"""addJava "-Ddd.service.name=${datadogServiceName.value}"""",
     bashScriptExtraDefines += {
       datadogAgentTraceUrl.value match {
