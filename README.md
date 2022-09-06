@@ -56,6 +56,30 @@ Default value: `true`
 datadogApmEnabled := true
 ```
 
+#### `datadogProfilingEnabled`
+
+Datadog Profiling.
+See https://docs.datadoghq.com/profiler/enabling/java/?tab=commandarguments
+
+Default value: `true`
+Will be deactivated if `datadogApmEnabled` is `false`
+
+```scala
+datadogProfilingEnabled := true
+```
+
+#### `datadogAllocationProfilingEnabled`
+
+Datadog Allocations Profiling.
+See https://docs.datadoghq.com/profiler/enabling/java/?tab=commandarguments
+
+Default value: `true`
+Will be deactivated if `datadogApmEnabled` is `false`
+
+```scala
+datadogAllocationProfilingEnabled := true
+```
+
 #### `datadogServiceName`
 
 By default, the agent will use the sbt project `name` value as `service.name`. 
