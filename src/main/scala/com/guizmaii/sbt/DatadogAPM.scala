@@ -35,6 +35,14 @@ object DatadogAPM extends AutoPlugin {
       "Datadog APM agent enabled. Default: `DD_TRACE_ENABLED` envvar value if present, 'true' otherwise"
     )
 
+    lazy val datadogProfilingEnabled = taskKey[Boolean](
+      "Datadog Profiling. See https://docs.datadoghq.com/profiler/enabling/java/?tab=commandarguments. Default: 'true'. Deactivated if `datadogApmEnabled` is `false`"
+    )
+
+    lazy val datadogAllocationProfilingEnabled = taskKey[Boolean](
+      "Datadog Allocations Profiling. See https://docs.datadoghq.com/profiler/enabling/java/?tab=commandarguments. Default: 'true'. Deactivated if `datadogApmEnabled` is `false`"
+    )
+
     lazy val datadogServiceName = taskKey[String](
       "The name of a set of processes that do the same job. Used for grouping stats for your application. Default value is the sbt project name"
     )
@@ -58,9 +66,11 @@ object DatadogAPM extends AutoPlugin {
 
   override lazy val projectSettings = Seq(
     ivyConfigurations += DatadogConfig,
-    datadogApmVersion                              := "0.106.0",
+    datadogApmVersion                              := "0.108.1",
     datadogJavaAgent                               := findDatadogJavaAgent(update.value),
     datadogApmEnabled                              := true,
+    datadogProfilingEnabled                        := true,
+    datadogAllocationProfilingEnabled              := true,
     datadogServiceName                             := name.value,
     datadogAgentTraceUrl                           := TraceAgentUrl.defaultUnixSocketUrl,
     datadogEnableDebug                             := false,
@@ -68,7 +78,14 @@ object DatadogAPM extends AutoPlugin {
     libraryDependencies += "com.datadoghq"          % "dd-java-agent" % datadogApmVersion.value % DatadogConfig,
     Universal / mappings += datadogJavaAgent.value -> "datadog/dd-java-agent.jar",
     bashScriptExtraDefines += """addJava "-javaagent:${app_home}/../datadog/dd-java-agent.jar"""",
-    bashScriptExtraDefines += s"""addJava "-Ddd.trace.enabled=${datadogApmEnabled.value}"""",
+    bashScriptExtraDefines +=
+      // https://docs.datadoghq.com/profiler/enabling/java/?tab=commandarguments
+      // We have to check `datadogApmEnabled` to enable profiling because if we activate the profiling but deactivate the APM, the APM will start anyway.
+      s"""
+         |addJava "-Ddd.trace.enabled=${datadogApmEnabled.value}"
+         |addJava "-Ddd.profiling.enabled=${if (datadogApmEnabled.value) datadogProfilingEnabled.value else false}"
+         |addJava "-Ddd.profiling.allocation.enabled=${if (datadogApmEnabled.value) datadogAllocationProfilingEnabled.value else false}"
+         |""".stripMargin,
     bashScriptExtraDefines += s"""addJava "-Ddd.service.name=${datadogServiceName.value}"""",
     bashScriptExtraDefines += {
       datadogAgentTraceUrl.value match {
