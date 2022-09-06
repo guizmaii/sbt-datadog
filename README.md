@@ -24,7 +24,7 @@ Installation
 Add the following to your `project/plugins.sbt` file:
 
 ```scala
-addSbtPlugin("com.guizmaii" % "sbt-datadog" % "4.3.0")
+addSbtPlugin("com.guizmaii" % "sbt-datadog" % "4.7.0")
 ```
 
 To enable the Datadog APM for your project, add the `DatadogAPM` auto-plugin to your project.
@@ -41,7 +41,7 @@ Configuration
 To use a specific Datadog Java APM Agent version, add the following to your `build.sbt` file:
 
 ```scala
-datadogApmVersion := "0.106.0"
+datadogApmVersion := "0.108.1"
 ```
 
 #### `datadogApmEnabled`
