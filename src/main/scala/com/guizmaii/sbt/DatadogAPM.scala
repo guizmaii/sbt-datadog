@@ -1,10 +1,10 @@
 package com.guizmaii.sbt
 
-import com.typesafe.sbt.SbtNativePackager._
+import com.typesafe.sbt.SbtNativePackager.*
 import com.typesafe.sbt.packager.archetypes.scripts.BashStartScriptPlugin.autoImport.bashScriptExtraDefines
 import com.typesafe.sbt.packager.archetypes.scripts.{BashStartScriptPlugin, BatStartScriptPlugin}
-import sbt._
-import sbt.Keys._
+import sbt.*
+import sbt.Keys.*
 import sbt.librarymanagement.DependencyFilter
 
 /**
@@ -83,8 +83,8 @@ object DatadogAPM extends AutoPlugin {
       // We have to check `datadogApmEnabled` to enable profiling because if we activate the profiling but deactivate the APM, the APM will start anyway.
       s"""
          |addJava "-Ddd.trace.enabled=${datadogApmEnabled.value}"
-         |addJava "-Ddd.profiling.enabled=${if (datadogApmEnabled.value) datadogProfilingEnabled.value else false}"
-         |addJava "-Ddd.profiling.allocation.enabled=${if (datadogApmEnabled.value) datadogAllocationProfilingEnabled.value else false}"
+         |addJava "-Ddd.profiling.enabled=${datadogApmEnabled.value && datadogProfilingEnabled.value}"
+         |addJava "-Ddd.profiling.allocation.enabled=${datadogApmEnabled.value && datadogAllocationProfilingEnabled.value}"
          |""".stripMargin,
     bashScriptExtraDefines += s"""addJava "-Ddd.service.name=${datadogServiceName.value}"""",
     bashScriptExtraDefines += {
