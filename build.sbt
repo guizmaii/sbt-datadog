@@ -3,7 +3,7 @@ versionScheme := Some("semver-spec")
 scalaVersion  := "2.12.17"
 sbtPlugin     := true
 
-addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.9.13" % "provided")
+addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.9.14" % "provided")
 
 inThisBuild(
   List(
