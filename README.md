@@ -24,7 +24,7 @@ Installation
 Add the following to your `project/plugins.sbt` file:
 
 ```scala
-addSbtPlugin("com.guizmaii" % "sbt-datadog" % "4.9.2")
+addSbtPlugin("com.guizmaii" % "sbt-datadog" % "4.9.3")
 ```
 
 To enable the Datadog APM for your project, add the `DatadogAPM` auto-plugin to your project.
