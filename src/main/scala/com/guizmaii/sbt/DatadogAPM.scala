@@ -99,8 +99,8 @@ object DatadogAPM extends AutoPlugin {
             // We have to check `datadogApmEnabled` to enable profiling because if we activate the profiling but deactivate the APM, the APM will start anyway.
             // I'm clearly not an expert in Bash... At least, it's explicit...
             s"""
-               |if [ "$${DD_TRACE_ENABLED}" == "true" ]; then
-               |  export __ENABLE_TRACES__=true
+               |if [ "$${DD_TRACE_ENABLED}" == "false" ]; then
+               |  export __ENABLE_TRACES__=false
                |else
                |  export __ENABLE_TRACES__=${datadogApmEnabled.value}
                |fi
