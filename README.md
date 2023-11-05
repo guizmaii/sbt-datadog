@@ -41,7 +41,7 @@ Configuration
 To use a specific Datadog Java APM Agent version, add the following to your `build.sbt` file:
 
 ```scala
-datadogApmVersion := "0.108.1"
+datadogApmVersion := "1.22.0"
 ```
 
 #### `datadogApmEnabled`

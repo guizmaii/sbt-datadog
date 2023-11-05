@@ -66,7 +66,7 @@ object DatadogAPM extends AutoPlugin {
 
   override lazy val projectSettings = Seq(
     ivyConfigurations += DatadogConfig,
-    datadogApmVersion                 := "1.15.3",
+    datadogApmVersion                 := "1.22.0",
     datadogJavaAgent                  := findDatadogJavaAgent(update.value),
     datadogApmEnabled                 := true,
     datadogProfilingEnabled           := true,
