@@ -1,6 +1,6 @@
 name          := "sbt-datadog"
 versionScheme := Some("semver-spec")
-scalaVersion  := "2.13.12"
+scalaVersion  := "2.12.18"
 sbtPlugin     := true
 
 addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.9.16" % "provided")
