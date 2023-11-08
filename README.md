@@ -2,7 +2,7 @@
 
 ## Disclaimer
 
-⚠️ **This is a fork of the original (that I also wrote a long time ago) [Colisweb/sbt-datadog](https://github.com/Colisweb/sbt-datadog)** ⚠️
+This is a fork of the original (that I also wrote a long time ago), now unmaintained, [Colisweb/sbt-datadog](https://github.com/Colisweb/sbt-datadog)
 
 # Documentation
 
