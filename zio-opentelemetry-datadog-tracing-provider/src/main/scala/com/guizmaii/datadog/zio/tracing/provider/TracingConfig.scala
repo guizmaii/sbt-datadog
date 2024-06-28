@@ -6,8 +6,8 @@ import zio.config.{ConfigDescriptor, ReadError, ZConfig}
 
 sealed trait TracingConfig extends Product with Serializable
 object TracingConfig {
-  case object OPENTELEMETRY     extends TracingConfig
-  case object Disabled extends TracingConfig
+  case object OPENTELEMETRY extends TracingConfig
+  case object Disabled      extends TracingConfig
 
   val config: ConfigDescriptor[TracingConfig] =
     boolean("ZIO_OPENTELEMETRY_DATADOG_ENABLED")

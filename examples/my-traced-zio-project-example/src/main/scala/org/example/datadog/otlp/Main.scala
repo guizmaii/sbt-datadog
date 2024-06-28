@@ -13,6 +13,6 @@ object Main extends ZIOAppDefault {
     ).provide(
       MyService.live,
       TracingProvider.live(appName = "my-app", appVersion = Some("1.0.0")),
-      TracingConfig.fromSystemEnv
+      TracingConfig.fromSystemEnv,
     )
 }

@@ -63,16 +63,16 @@ lazy val `my-traced-zio-project-example` =
     .dependsOn(`zio-opentelemetry-datadog-tracing-provider`)
     .settings(publish / skip := true)
     .settings(
-      name               := "my-traced-zio-project-example",
-      scalaVersion       := scala213,
+      name         := "my-traced-zio-project-example",
+      scalaVersion := scala213,
       libraryDependencies ++= Seq(
-        "dev.zio"         %% "zio"               % "2.1.5",
-        "dev.zio"         %% "zio-config"        % "3.0.7",
+        "dev.zio" %% "zio"        % "2.1.5",
+        "dev.zio" %% "zio-config" % "3.0.7",
       ),
       //
       // This is an example of configuration you need to add in your project to configure sbt-datadog and the Datadog APM Agent
       //
-      //Seq(
+      // Seq(
       //  datadogServiceName := "my-app",
       //  datadogApmVersion  := "1.36.0", // See https://github.com/DataDog/dd-trace-java/releases
       //  datadogGlobalTags  := Map("version" -> version.value),
@@ -95,4 +95,4 @@ lazy val `my-traced-zio-project-example` =
       //    "-Ddd.integration.opentelemetry.experimental.enabled=true", // https://github.com/DataDog/dd-trace-java/pull/4669
       //    "-Ddd.integration.zio.experimental.enabled=true",           // https://github.com/DataDog/dd-trace-java/pull/4848
       //  ).map(config => s"""addJava "$config""""),
-      )
+    )
