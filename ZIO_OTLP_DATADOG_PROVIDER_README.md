@@ -43,7 +43,7 @@ This library provides you two things:
 This layer is the one you'll want to use in your app.    
 It'll provide you a `Tracing` instance that'll send traces to Datadog via the Datadog APM you configured with the sbt plugin.
 
-You have an example of how to use it in [examples/my-traced-zio-project-example/src/main/scala/org/example/datadog/old/Main](examples/my-traced-zio-project-example/src/main/scala/org/example/datadog/otlp/Main.scala).
+You have an example of how to use it in [examples/my-traced-zio-project-example/src/main/scala/org/example/datadog/otlp/Main](examples/my-traced-zio-project-example/src/main/scala/org/example/datadog/otlp/Main.scala).
 
 #### `TracingProvider.noOp` layer
 
@@ -55,4 +55,4 @@ The `Tracing` instance that it'll provide does nothing.
 
 We all know the ZIO "service pattern".      
 Well, I "extended" it with what I call the "traced service pattern".    
-I give an example of this pattern in [examples/my-traced-zio-project-example/src/main/scala/org/example/datadog/old/MyService](examples/my-traced-zio-project-example/src/main/scala/org/example/datadog/otlp/MyService.scala).
+I give an example of this pattern in [examples/my-traced-zio-project-example/src/main/scala/org/example/datadog/otlp/MyService](examples/my-traced-zio-project-example/src/main/scala/org/example/datadog/otlp/MyService.scala).
