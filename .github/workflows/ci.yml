@@ -36,4 +36,4 @@ jobs:
 
       - name: Compile code
         shell: bash
-        run: sbt 'clean;Test/compile'
+        run: sbt 'clean;+Test/compile;+publishLocal'
