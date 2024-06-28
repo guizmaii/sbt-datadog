@@ -14,7 +14,7 @@
 ### The DataDog APM Agent magic
 
 The Datadog APM agent you configured with `sbt-datadog` adds a pre-configured OpenTelemetry `Tracer` to your project.    
-This OpenTelemetry `Tracer` is used to send traces to the Datadog Agent configured in your infrastructure.   
+This OpenTelemetry `Tracer` is used to send traces to the Datadog Agent deployed in your infrastructure.   
 The zio-opentelemtry `Tracing` is a kind of wrapper around OpenTelemetry `Tracer`.   
 This is this `Tracing` abstraction that you'll need to use in your ZIO project.
 
