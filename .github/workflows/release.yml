@@ -24,7 +24,9 @@ jobs:
           check-latest: true
 
       - name: Publish package
-        run: sbt +ci-release
+        run: |
+          sbt "clean;sbt-datadog/ci-release"         
+          sbt "clean;+zio-opentelemetry-datadog-tracing-provider/ci-release"
         env:
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
           PGP_SECRET: ${{ secrets.PGP_SECRET }}
