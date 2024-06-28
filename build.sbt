@@ -27,12 +27,12 @@ lazy val root =
       crossScalaVersions := Nil, // https://www.scala-sbt.org/1.x/docs/Cross-Build.html#Cross+building+a+project+statefully,
     )
     .aggregate(
-      `sbt-plugins`,
+      `sbt-datadog`,
       `zio-opentelemetry-datadog-tracing-provider`,
       `my-traced-zio-project-example`,
     )
 
-lazy val `sbt-plugins` =
+lazy val `sbt-datadog` =
   project
     .in(file("sbt-datadog"))
     .settings(
