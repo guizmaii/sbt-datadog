@@ -14,8 +14,8 @@ ThisBuild / developers    :=
     )
   )
 
-addCommandAlias("releaseSbtDatadog", "project sbt-datadog;clean;ci-release")
-addCommandAlias("releaseZioOpentelemetryDatadogTracingProvider", "project zio-opentelemetry-datadog-tracing-provider;clean;+ci-release")
+addCommandAlias("releaseSbtDatadog", "project sbt-datadog;clean;Test/compile;ci-release")
+addCommandAlias("releaseZioOpentelemetryDatadogTracingProvider", "project zio-opentelemetry-datadog-tracing-provider;clean;+Test/compile;ci-release")
 
 val scala212 = "2.12.19"
 val scala213 = "2.13.14"
