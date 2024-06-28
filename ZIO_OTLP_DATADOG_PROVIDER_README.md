@@ -33,8 +33,8 @@ libraryDependencies += "com.guizmaii" %% "zio-opentelemetry-datadog-tracing-prov
 ### Documentation
 
 This library provides you two things:
-1. The `TracingProvider` object to help you easily get a zio-opentelemetry `Tracing` instance configured to send traces to Datadog via the Datadog APM you configured with the sbt plugin.
-2. The `TracingConfig` object to help you easily enable or disable zio-opentelemetry `Tracing` via .
+1. The [TracingProvider](zio-opentelemetry-datadog-tracing-provider/src/main/scala/com/guizmaii/datadog/zio/tracing/provider/TracingProvider.scala) object to help you easily get a zio-opentelemetry `Tracing` instance configured to send traces to Datadog via the Datadog APM you configured with the sbt plugin.
+2. The [TracingConfig](zio-opentelemetry-datadog-tracing-provider/src/main/scala/com/guizmaii/datadog/zio/tracing/provider/TracingConfig.scala) object to help you easily enable or disable zio-opentelemetry `Tracing` via .
 
 ### TracingProvider
 
