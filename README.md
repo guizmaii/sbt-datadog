@@ -1,7 +1,7 @@
 # sbt-datadog
 
 This project provides three things:
-1. `sbt-datadog`, an sbt plugin to easily add the Datadog APM for your project
+1. `sbt-datadog`, an sbt plugin to easily add the Datadog APM to your project
 2. `zio-opentelemetry-datadog-tracing-provider`, a library to help you easily configure `zio-opentelemetry` to send traces to Datadog via the Datadog APM you configured with the `sbt-datadog` plugin
 3. An example ZIO app to show how to use the and the `zio-opentelemetry-datadog-tracing-provider` library
 
