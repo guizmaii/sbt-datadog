@@ -5,7 +5,7 @@
 ### Terminology
 
 - **Datadog APM Agent**: is the Java agent added by `sbt-datadog` in your project.    
-  It's job is to monitor your application and send traces to the Datadog Agent.   
+  Its job is to monitor your application and send traces to the Datadog Agent.   
   See also: https://github.com/DataDog/dd-trace-java   
 - **Datadog Agent**: is the agent that receives traces from the Datadog APM Agent and sends them to the Datadog backend.
   It must be installed in your infrastructure so that your application can send traces to it.    
