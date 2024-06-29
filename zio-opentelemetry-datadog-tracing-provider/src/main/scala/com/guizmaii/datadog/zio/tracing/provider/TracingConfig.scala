@@ -15,7 +15,7 @@ object TracingConfig {
       .transformOrFailLeft(enabled => if (enabled) Right(OPENTELEMETRY) else Right(Disabled))(_ => false)
 
   /**
-   * Provides a way to enable or disable the OpenTelemetry Tracing via the `DATADOG_OTLP_ENABLED` environment variable.
+   * Provides a way to enable or disable the OpenTelemetry Tracing via the `ZIO_OPENTELEMETRY_DATADOG_ENABLED` environment variable.
    */
   val fromSystemEnv: ZLayer[Any, ReadError[String], TracingConfig] = ZConfig.fromSystemEnv(config)
 }
