@@ -3,20 +3,14 @@ package com.guizmaii.datadog.zio.tracing.provider
 import io.opentelemetry.api.GlobalOpenTelemetry
 import io.opentelemetry.api.trace.TracerProvider
 import zio.telemetry.opentelemetry.Tracing
-import zio.{ULayer, ZIO, ZLayer}
+import zio.{TaskLayer, ZIO, ZLayer}
 
 object TracingProvider {
 
   /**
    * Useful for tests
    */
-  val noOp: ULayer[Tracing] =
-    ZLayer
-      .make[Tracing](
-        Tracing.live,
-        ZLayer(ZIO.attempt(TracerProvider.noop().get("noOp"))),
-      )
-      .orDie
+  def noOp: TaskLayer[Tracing] = ZLayer(ZIO.attempt(TracerProvider.noop().get("noOp"))) >>> Tracing.live
 
   /**
    * Provides a zio-opentelemetry `Tracing` instance with the OpenTelemetry `Tracer` configured by the Datadog APM Agent
@@ -35,7 +29,7 @@ object TracingProvider {
         _      <- ZIO.logInfo(s"OpenTelemetry Tracing config: $config - appName: $appName - appVersion: $appVersion")
       } yield config match {
         case TracingConfig.Disabled      => noOp
-        case TracingConfig.OPENTELEMETRY =>
+        case TracingConfig.Opentelemetry =>
           // Magically get the OpenTelemetry `Tracer` configured in the Datadog APM Agent
           // that you configured in your application thanks the `sbt-datadog` plugin
           val tracer =
@@ -46,10 +40,7 @@ object TracingProvider {
               }
             }
 
-          ZLayer.make[Tracing](
-            Tracing.propagating,
-            ZLayer(tracer),
-          )
+          ZLayer(tracer) >>> Tracing.propagating
       }
     }.flatten
 }
